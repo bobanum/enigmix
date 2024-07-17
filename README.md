@@ -1,75 +1,26 @@
-# Nuxt 3 Minimal Starter
+# Enigmix
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Clues syntaxe
 
-## Setup
+### Operators
+- `=` : Equal
+- `!=` : Not equal
+- `>` : Greater than
+- `<` : Less than
+- `>=` : Greater than or equal
+- `<=` : Less than or equal
+- `|` : Or
+- `&` : And
+- `^` : Xor
+- `#` : Cardinality
 
-Make sure to install the dependencies:
+### Syntaxes
 
-```bash
-# npm
-npm install
+> Uppercase = Category
+> Lowercase = Instance
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- A.a = B.b : Direct comparison. Meaning A.a is equal to B.b
+- A.a.p != B.b.p : Property comparison. Meaning the property p of A.a is not equal to the property p of B.b
+- E.p(A.a < B.b) : Property comparison with condition. Meaning the property p of A.a is less than the property p of B.b
+- E.#(A.a > B.b) : Cardinality comparison. Meaning the position of A.a is greater than the position of B.b
+- E.#(A.a > B.b > C.C) : Cardinality comparison. Meaning the position of A.a is greater than the position of B.b and the position of B.b is greater than the position of C.c

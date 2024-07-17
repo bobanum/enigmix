@@ -4,28 +4,28 @@
 <script setup>
 import Enigma from '~/logic/Enigma.js';
 const categories = {
-	first_name: {
-		id: "first_name",
-		label: "First name",
+	seniority: {
+		id: "seniority",
+		label: "Seniority",
 		instances: {
-			benoit: {
-				label: "Benoît",
+			y4: {
+				label: "4 years",
 				properties: {}
 			},
-			quentin: {
-				label: "Quentin",
+			y5: {
+				label: "5 years",
 				properties: {}
 			},
-			daniel: {
-				label: "Daniel",
+			y6: {
+				label: "6 years",
 				properties: {}
 			},
-			mathieu: {
-				label: "Mathieu",
+			y7: {
+				label: "7 years",
 				properties: {}
 			},
-			laurent: {
-				label: "Laurent",
+			y8: {
+				label: "8 years",
 				properties: {}
 			}
 		}
@@ -56,10 +56,40 @@ const categories = {
 			}
 		}
 	},
+	first_name: {
+		id: "first_name",
+		label: "First name",
+		instances: {
+			benoit: {
+				label: "Benoît",
+				properties: {}
+			},
+			daniel: {
+				label: "Daniel",
+				properties: {}
+			},
+			mathieu: {
+				label: "Mathieu",
+				properties: {}
+			},
+			laurent: {
+				label: "Laurent",
+				properties: {}
+			},
+			quentin: {
+				label: "Quentin",
+				properties: {}
+			},
+		}
+	},
 	position: {
 		id: "position",
 		label: "Position",
 		instances: {
+			anouncer: {
+				label: "Anouncer",
+				properties: {}
+			},
 			baggage_handler: {
 				label: "Baggage handler",
 				properties: {}
@@ -76,50 +106,22 @@ const categories = {
 				label: "Air traffic controller",
 				properties: {}
 			},
-			anouncer: {
-				label: "Anouncer",
-				properties: {}
-			}
 		}
 	},
-	seniority: {
-		id: "seniority",
-		label: "Seniority",
-		instances: {
-			y4: {
-				label: "4 years",
-				properties: {}
-			},
-			y5: {
-				label: "5 years",
-				properties: {}
-			},
-			y6: {
-				label: "6 years",
-				properties: {}
-			},
-			y7: {
-				label: "7 years",
-				properties: {}
-			},
-			y8: {
-				label: "8 years",
-				properties: {}
-			}
-		}
-	}
 };
 const clues = [
 	"position.baggage_handler = seniority.y6",
-	"seniority.#(position.electrician) > seniority.#(lastname.ledoux) ",
-	"firstname.quentin = seniority.y5",
-	"seniority.#(lastname.maréchal > position.air_traffic_controller > firstname.daniel)",
-	"seniority.#(lastname.forest < lastname.bouchard)",
-	"firstname.mathieu = position.security_guard",
-	"firstname.laurent = lastname.anderson",
-	"seniority.#(firstname.laurent < position.air_traffic_controller)",
-	"seniority.#(lastname.anderson < position.air_traffic_controller) ",
+	"seniority.#(position.electrician > last_name.ledoux)",
+	"first_name.quentin = seniority.y5",
+	"seniority.#(last_name.marechal > position.air_traffic_controller > first_name.daniel)",
+	"seniority.#(last_name.forest < last_name.bouchard)",
+	"first_name.mathieu = position.security_guard",
+	"first_name.laurent = last_name.anderson",
+	"seniority.#(first_name.laurent < position.air_traffic_controller)",
+	"seniority.#(last_name.anderson < position.air_traffic_controller) ",
 ];
 const enigma = new Enigma(categories, clues);
-console.log(enigma.relations);
+enigma.processClue(0,1,2,3,4,5,6,7,8);
+console.log(enigma.toString());
+
 </script>

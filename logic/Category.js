@@ -8,6 +8,9 @@ export default class Category {
 		this.label = label;
 		this.instances = this.parseInstances(instances);
 	}
+	get path() {
+		return this.id;
+	}
 	parseInstances(obj) {
 		const result = {};
 		for (let id in obj) {
