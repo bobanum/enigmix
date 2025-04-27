@@ -122,6 +122,9 @@ export default class Enigma {
 
 		return result.join("\n");
 	}
+	getCategory(c) {
+		return this.categories[c];
+	}
 	getInstance(c, i) {
 		if (arguments.length === 1) {
 			[ c, i ] = c.split(".");

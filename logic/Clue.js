@@ -25,13 +25,15 @@ export default class Clue {
 			return this;
 		}
 		if (parts = this.parseAttributeComparison(this.formula)) {
-			// let inst0 = parts.instances[0];
-			// let inst1 = parts.instances[1];
-			// switch (parts.ops[0]) {
-			// 	case '=': return this.processEqual(inst0, inst1);
-			// 	case '!=': return this.processNotEqual(inst0, inst1);
-			// 	case '<': return this.processLess(inst0, inst1);
-			// }
+			if (parts.instances.length > 2) {
+				console.warn("Not implemented multiple operators");
+			}
+			if (parts.attribute === '#') {
+				console.log(32,parts);
+				console.log(33,parts.instances[0],parts.category.getRelations(parts.instances[0]));
+				// parts.group
+			}
+			console.log(parts);
 			return this;
 		}
 	}
@@ -67,24 +69,13 @@ export default class Clue {
 		parts = r.exec(formula);
 		if (!parts) return false;
 		let result = {};
-		result.group = parts[1];
-		result.attr = parts[2];
+		result.category = this.enigma.getCategory(parts[1]);
+		result.attribute = parts[2];
 		formula = parts[3];
 		parts = this.parseDirectComparison(formula);
+		if (!parts) return false;
 		result.instances = parts.instances;
 		result.ops = parts.ops;
-		// result.instances = [];
-		// result.ops = [];
-		
-		// r = new RegExp(`^${instance}\\s*(${op})\\s*(.*)$`);
-		// let idx = 0;
-		// while (parts = r.exec(formula)) {
-		// 	result.instances.push(this.enigma.getInstance(parts[1], parts[2]));
-		// 	result.ops.push(parts[3]);
-		// 	formula = parts[4];
-		// 	idx++;
-		// }
-		// result.instances.push(this.enigma.getInstance(formula));
 		return result;
 	}
 	processEqual(...instances) {
